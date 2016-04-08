@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE texte SYSTEM "petit_prince_3IF.dtd">
 <?xml-stylesheet type="text/xsl" href="petit-prince.xsl"?>
+
 <texte>
 	<entete>
 		<infos>
@@ -11,7 +12,6 @@
 			<mise_en_forme_par>
 				<auteur NoBinome="B3449">Victor Capelle</auteur>
 				<auteur NoBinome="B3449">Quentin Toulou</auteur>
-chil
 			</mise_en_forme_par>
 			<email>quentin.toulouo@insa-lyon.fr</email>		
 			<date>08/O4/2016</date>
