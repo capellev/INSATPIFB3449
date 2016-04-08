@@ -31,8 +31,12 @@
 	<h2 style="" ></h2>
 	</xsl:template>
 	
-	<xsl:template>
-	<h2 style="" ></h2>
+	<xsl:template match="infos">
+	<blockquote style="color:darkgreen;" >
+	But du TP du <xsl:value-of select="@date"/> : <xsl:value-of select="@but"/>
+	<hr/>
+	<xsl:apply-templates/>
+	</blockquote>
 	</xsl:template>
 
 </xsl:stylesheet>
