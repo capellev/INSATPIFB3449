@@ -61,11 +61,52 @@
 	</xsl:template>
 	
 	<xsl:template match="phrase[@langue='hu']">
+	<xsl:if test="position() = 1">
+	</xsl:if>
 	<span style="color:brown; font-style:italic;" >
-	<xsl:apply-templates/>
+	<xsl:value-of select="."/>
 	</span>
 	</xsl:template>
-
+	
+	<xsl:template match="paragr[@type='dialogue']">
+	<table cellspacing="50" >
+	<td>
+	<table border="1" width="600" align="center" cellpadding="10" >
+	<xsl:for-each select="./phrase[@langue='fr']">
+	<tr>
+		<td><img src="images/{@locuteur}.png"/></td>
+		<td><xsl:apply-templates select="."/></td>
+	</tr>
+	</xsl:for-each>
+	</table>
+	</td>
+	<td>
+	<table border="1" width="600" align="center" cellpadding="10"  >
+	<xsl:for-each select="./phrase[@langue='hu']">
+	<tr>
+		<td><img src="images/{@locuteur}.png"/></td>
+		<td><xsl:apply-templates select="."/></td>
+	</tr>
+	</xsl:for-each>
+	</table>
+	</td>
+	</table>
+	</xsl:template>
+	
+	<xsl:template match="phrase[@langue='fr']">
+	<xsl:choose>
+	<xsl:when test="contains(text(),'mouton')">
+	<span style="font-weight:bold; font-size:24">
+	<xsl:value-of select="."/>
+	<img src="images/moutonDessin.png" alt="unMouton"/>
+	</span>
+	</xsl:when>
+	<xsl:otherwise>
+	<xsl:value-of select="."/>
+	</xsl:otherwise>
+	</xsl:choose>
+	</xsl:template>
+	
 </xsl:stylesheet>
 
 
