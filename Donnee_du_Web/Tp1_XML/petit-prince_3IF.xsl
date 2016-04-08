@@ -122,16 +122,14 @@
 		</xsl:choose>
 	</xsl:template>
 	
-	<xsl:templace match="entete">
-		<table border="1" width="600" align="center" cellpadding="10" >
-		<td>
-			<img>
-			<xsl:attribute name="src">
-				<xsl:value-of select="@chemin"/>
-			</xsl:attribute>
-			</img>
-		</td>
-		</table>
-	</xsl:templace>
+	<xsl:template match="lien">
+	</xsl:template>
+	
+	<xsl:template match="corps">
+	<h3>Début du texte :</h3>
+	<xsl:apply-templates/>
+	<h3>Fin du texte.</h3>
+	<hr/>
+	</xsl:template>
 	
 </xsl:stylesheet>
