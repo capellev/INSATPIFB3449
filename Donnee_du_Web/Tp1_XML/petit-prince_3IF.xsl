@@ -21,21 +21,23 @@
 	</html>
 	</xsl:template>
 	
-	<xsl:template match="titre">
+	<xsl:template match="infos/titre">
 	<h1 style="text-align:center; color:blue;">
-	<xsl:apply-templates/>
+	<xsl:value-of select="."/>
 	</h1>
 	</xsl:template>
 	
-	<xsl:template match="texte/entete/infos/auteur">
+	<xsl:template match="infos/auteur">
 	<br/>
 	<h2 style="text-align:center; font-style:italic;" >
-	<xsl:apply-templates/>
+	<xsl:value-of select="."/>
 	</h2>
 	<br/>
 	</xsl:template>
 	
 	<xsl:template match="infos">
+	<xsl:apply-templates select="titre"/>
+	<xsl:apply-templates select="auteur"/>
 	<blockquote style="color:darkgreen;" >
 	But du TP du <xsl:value-of select="date"/> : <xsl:value-of select="but"/>
 	<br/>
@@ -55,7 +57,6 @@
 	<br/>
 	Email du responsable : <xsl:value-of  select="email"/>
 	<hr/>
-	<xsl:apply-templates/>
 	</blockquote>
 	</xsl:template>
 	
@@ -77,11 +78,52 @@
 	</xsl:template>
 	
 	<xsl:template match="phrase[@langue='hu']">
+	<xsl:if test="position() = 1">
+	</xsl:if>
 	<span style="color:brown; font-style:italic;" >
-	<xsl:apply-templates/>
+	<xsl:value-of select="."/>
 	</span>
 	</xsl:template>
-
+	
+	<xsl:template match="paragr[@type='dialogue']">
+	<table cellspacing="50" >
+	<td>
+	<table border="1" width="600" align="center" cellpadding="10" >
+	<xsl:for-each select="./phrase[@langue='fr']">
+	<tr>
+		<td><img src="images/{@locuteur}.png"/></td>
+		<td><xsl:apply-templates select="."/></td>
+	</tr>
+	</xsl:for-each>
+	</table>
+	</td>
+	<td>
+	<table border="1" width="600" align="center" cellpadding="10"  >
+	<xsl:for-each select="./phrase[@langue='hu']">
+	<tr>
+		<td><img src="images/{@locuteur}.png"/></td>
+		<td><xsl:apply-templates select="."/></td>
+	</tr>
+	</xsl:for-each>
+	</table>
+	</td>
+	</table>
+	</xsl:template>
+	
+	<xsl:template match="phrase[@langue='fr']">
+	<xsl:choose>
+	<xsl:when test="contains(text(),'mouton')">
+	<span style="font-weight:bold; font-size:24">
+	<xsl:value-of select="."/>
+	<img src="images/moutonDessin.png" alt="unMouton"/>
+	</span>
+	</xsl:when>
+	<xsl:otherwise>
+	<xsl:value-of select="."/>
+	</xsl:otherwise>
+	</xsl:choose>
+	</xsl:template>
+	
 </xsl:stylesheet>
 
 
