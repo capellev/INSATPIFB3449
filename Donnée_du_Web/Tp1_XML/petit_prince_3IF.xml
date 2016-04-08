@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE texte SYSTEM "petit_prince_3IF.dtd">
 <?xml-stylesheet type="text/xsl" href="petit-prince.xsl"?>
 <texte>
@@ -9,10 +9,12 @@
 			<couverture chemin="images/prince.png"/>
 			<but>Traitement d'un texte franco/hongrois avec XPath / XSLT / XQuery</but>
 			<mise_en_forme_par>
-				<auteur NoBinome="B3100">Capelle Victor</auteur>
-				<auteur NoBinome="B3100">Toulou Quentin</auteur>
+				<auteur NoBinome="B3449">Victor Capelle</auteur>
+				<auteur NoBinome="B3449">Quentin Toulou</auteur>
+chil
 			</mise_en_forme_par>
-			<date>01/05/201</date>
+			<email>quentin.toulouo@insa-lyon.fr</email>		
+			<date>08/O4/2016</date>
 		</infos>
 		<lien langue="fr">http://wikilivres.info/wiki/Le_Petit_Prince</lien>
 		<lien langue="hu">http://mek.oszk.hu/00300/00384/00384.pdf</lien>
