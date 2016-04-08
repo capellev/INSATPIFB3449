@@ -27,7 +27,13 @@
 	</h1>
 	</xsl:template>
 	
-	<xsl:template></xsl:template>
+	<xsl:template>
+	<h2 style="" ></h2>
+	</xsl:template>
+	
+	<xsl:template>
+	<h2 style="" ></h2>
+	</xsl:template>
 
 </xsl:stylesheet>
 
