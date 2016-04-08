@@ -8,11 +8,31 @@
 	
 	<xsl:template match="/">
 	<html>
-		<body>
-		
-		<xsl:apply-templates/>
-		</body>
+	<head>
+	<title>
+	<xsl:value-of select="//titre"/>
+	<xsl:text> de </xsl:text>
+	... 
+	</title>
+	</head>
+	<body style="background-color:white;">
+	<xsl:apply-templates/>
+	</body>
 	</html>
+	</xsl:template>
+	
+	<xsl:template match="titre">
+	<h1 style="text-align:center; color:blue;">
+	<xsl:apply-templates/>
+	</h1>
+	</xsl:template>
+	
+	<xsl:template>
+	<h2 style="" ></h2>
+	</xsl:template>
+	
+	<xsl:template>
+	<h2 style="" ></h2>
 	</xsl:template>
 
 </xsl:stylesheet>
