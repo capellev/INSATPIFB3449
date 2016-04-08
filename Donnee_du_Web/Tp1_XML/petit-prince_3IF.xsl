@@ -43,6 +43,7 @@
 			<td>
 				<img src="./couverture/@chemin" alt="petit prince"/>
 			</td>
+			
 	But du TP du <xsl:value-of select="date"/> : <xsl:value-of select="but"/>
 			<br/>
 	Auteur(s) :  
