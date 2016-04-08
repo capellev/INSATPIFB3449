@@ -27,8 +27,12 @@
 	</h1>
 	</xsl:template>
 	
-	<xsl:template>
-	<h2 style="" ></h2>
+	<xsl:template match="texte/entete/infos/auteur">
+	<br/>
+	<h2 style="text-align:center; font-style:italic;" >
+	<xsl:apply-templates/>
+	</h2>
+	<br/>
 	</xsl:template>
 	
 	<xsl:template>
