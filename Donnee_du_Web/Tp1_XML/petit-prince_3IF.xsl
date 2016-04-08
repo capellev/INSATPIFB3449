@@ -58,6 +58,29 @@
 	<xsl:apply-templates/>
 	</blockquote>
 	</xsl:template>
+	
+	<xsl:template match="image">
+	<div align="center">
+	<img>
+	<xsl:attribute name="src">
+	<xsl:value-of select="@chemin"/>
+	</xsl:attribute>
+	</img>
+	</div>
+	</xsl:template>
+	
+	
+	<xsl:template match="paragr">
+	<p>
+	<xsl:apply-templates/>
+	</p>
+	</xsl:template>
+	
+	<xsl:template match="phrase[@langue='hu']">
+	<span style="color:brown; font-style:italic;" >
+	<xsl:apply-templates/>
+	</span>
+	</xsl:template>
 
 </xsl:stylesheet>
 
