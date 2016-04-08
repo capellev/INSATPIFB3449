@@ -31,10 +31,18 @@
 		<br/>
 	</xsl:template>
 	
+	
+	
 	<xsl:template match="infos">
 		<xsl:apply-templates select="titre"/>
 		<xsl:apply-templates select="auteur"/>
 		<blockquote style="color:darkgreen;">
+		
+		<table align="center" cellpadding="50">
+		<tr>
+			<td>
+				<img src="./couverture/@chemin" alt="petit prince"/>
+			</td>
 	But du TP du <xsl:value-of select="date"/> : <xsl:value-of select="but"/>
 			<br/>
 	Auteur(s) :  
@@ -51,9 +59,16 @@
 			</xsl:for-each>
 			<br/>
 	Email du responsable : <xsl:value-of select="email"/>
+	</tr>
+	</table>
 		</blockquote>
 		<hr/>
+		
 	</xsl:template>
+	
+	
+	
+	
 	<xsl:template match="image">
 		<div align="center">
 			<img>
@@ -122,16 +137,5 @@
 		</xsl:choose>
 	</xsl:template>
 	
-	<xsl:templace match="entete">
-		<table border="1" width="600" align="center" cellpadding="10" >
-		<td>
-			<img>
-			<xsl:attribute name="src">
-				<xsl:value-of select="@chemin"/>
-			</xsl:attribute>
-			</img>
-		</td>
-		</table>
-	</xsl:templace>
 	
 </xsl:stylesheet>
