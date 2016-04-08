@@ -24,25 +24,28 @@
 		</h1>
 	</xsl:template>
 	<xsl:template match="infos/auteur">
-		<br/>
 		<h2 style="text-align:center; font-style:italic;">
 			<xsl:value-of select="."/>
 		</h2>
-		<br/>
 	</xsl:template>
 	
 	
 	
 	<xsl:template match="infos">
-		<xsl:apply-templates select="titre"/>
-		<xsl:apply-templates select="auteur"/>
-		<blockquote style="color:darkgreen;">
 		
-		<table align="center" cellpadding="50">
+		<table  cellpadding="50"   align="center" >
 		<tr>
 			<td>
-				<img src="./couverture/@chemin" alt="petit prince"/>
+				<img>
+				<xsl:attribute name="src">
+				<xsl:value-of select="couverture/@chemin"/>
+				</xsl:attribute>
+				</img>
 			</td>
+			<td>
+			<xsl:apply-templates select="titre"/>
+		<xsl:apply-templates select="auteur"/>
+			<blockquote style="color:darkgreen;">
 	But du TP du <xsl:value-of select="date"/> : <xsl:value-of select="but"/>
 			<br/>
 	Auteur(s) :  
@@ -50,7 +53,7 @@
 				<xsl:value-of select="."/>
 				<xsl:choose>
 					<xsl:when test="following-sibling::*">
-						<xsl:if test="@NoBinome!=following::*/@NoBinome"> (<xsl:value-of select="@NoBinome"/>) </xsl:if>&amp; 
+						<xsl:if test="@NoBinome!=following::*/@NoBinome"> (<xsl:value-of select="@NoBinome"/>) </xsl:if> &amp; 
 		</xsl:when>
 					<xsl:otherwise>
 						<xsl:if test="@NoBinome!=preceding::*/@NoBinome"> (<xsl:value-of select="@NoBinome"/>) </xsl:if>
@@ -59,9 +62,10 @@
 			</xsl:for-each>
 			<br/>
 	Email du responsable : <xsl:value-of select="email"/>
+	</blockquote>
+	</td>
 	</tr>
 	</table>
-		</blockquote>
 		<hr/>
 		
 	</xsl:template>
