@@ -21,21 +21,23 @@
 	</html>
 	</xsl:template>
 	
-	<xsl:template match="titre">
+	<xsl:template match="infos/titre">
 	<h1 style="text-align:center; color:blue;">
-	<xsl:apply-templates/>
+	<xsl:value-of select="."/>
 	</h1>
 	</xsl:template>
 	
-	<xsl:template match="texte/entete/infos/auteur">
+	<xsl:template match="infos/auteur">
 	<br/>
 	<h2 style="text-align:center; font-style:italic;" >
-	<xsl:apply-templates/>
+	<xsl:value-of select="."/>
 	</h2>
 	<br/>
 	</xsl:template>
 	
 	<xsl:template match="infos">
+	<xsl:apply-templates select="titre"/>
+	<xsl:apply-templates select="auteur"/>
 	<blockquote style="color:darkgreen;" >
 	But du TP du <xsl:value-of select="date"/> : <xsl:value-of select="but"/>
 	<br/>
@@ -55,7 +57,6 @@
 	<br/>
 	Email du responsable : <xsl:value-of  select="email"/>
 	<hr/>
-	<xsl:apply-templates/>
 	</blockquote>
 	</xsl:template>
 	
