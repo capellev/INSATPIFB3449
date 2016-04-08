@@ -37,7 +37,23 @@
 	
 	<xsl:template match="infos">
 	<blockquote style="color:darkgreen;" >
-	But du TP du <xsl:value-of select="@date"/> : <xsl:value-of select="@but"/>
+	But du TP du <xsl:value-of select="date"/> : <xsl:value-of select="but"/>
+	<br/>
+	Auteur(s) :  
+	<xsl:for-each select="mise_en_forme_par/auteur">
+		<xsl:value-of select="."/>
+		<xsl:choose>
+		<xsl:when test="following-sibling::*"> 
+		<xsl:if test="@NoBinome!=following::*/@NoBinome"> (<xsl:value-of select="@NoBinome"/>) </xsl:if>
+		&amp; 
+		</xsl:when>
+		<xsl:otherwise>
+		<xsl:if test="@NoBinome!=preceding::*/@NoBinome"> (<xsl:value-of select="@NoBinome"/>) </xsl:if>
+		</xsl:otherwise>
+		</xsl:choose>
+	</xsl:for-each>
+	<br/>
+	Email du responsable : <xsl:value-of  select="email"/>
 	<hr/>
 	<xsl:apply-templates/>
 	</blockquote>
