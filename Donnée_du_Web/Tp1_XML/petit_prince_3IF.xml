@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE texte SYSTEM "petit_prince_3IF.dtd">
 <?xml-stylesheet type="text/xsl" href="petit-prince.xsl"?>
 <texte>
@@ -10,7 +10,7 @@
 			<but>Traitement d'un texte franco/hongrois avec XPath / XSLT / XQuery</but>
 			<mise_en_forme_par>
 				<auteur NoBinome="B3100">Capelle Victor</auteur>
-				<auteur NoBinome="B3100">Toulon Quentin</auteur>
+				<auteur NoBinome="B3100">Toulou Quentin</auteur>
 			</mise_en_forme_par>
 			<date>01/05/201</date>
 		</infos>
