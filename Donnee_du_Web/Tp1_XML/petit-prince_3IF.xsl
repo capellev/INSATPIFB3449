@@ -42,14 +42,11 @@
 				</xsl:attribute>
 				</img>
 			</td>
-<<<<<<< HEAD
-			
-=======
 			<td>
 			<xsl:apply-templates select="titre"/>
 		<xsl:apply-templates select="auteur"/>
 			<blockquote style="color:darkgreen;">
->>>>>>> bc4e5a1b1e7d4d9b676bf00a0939846206b945df
+
 	But du TP du <xsl:value-of select="date"/> : <xsl:value-of select="but"/>
 			<br/>
 	Auteur(s) :  
@@ -60,7 +57,7 @@
 						<xsl:if test="@NoBinome!=following::*/@NoBinome"> (<xsl:value-of select="@NoBinome"/>) </xsl:if> &amp; 
 		</xsl:when>
 					<xsl:otherwise>
-						<xsl:if test="@NoBinome!=preceding::*/@NoBinome"> (<xsl:value-of select="@NoBinome"/>) </xsl:if>
+						(<xsl:value-of select="@NoBinome"/>)
 					</xsl:otherwise>
 				</xsl:choose>
 			</xsl:for-each>
