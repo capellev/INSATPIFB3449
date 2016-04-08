@@ -124,6 +124,18 @@
 	</xsl:choose>
 	</xsl:template>
 	
+	<xsl:templace match="entete">
+		<table border="1" width="600" align="center" cellpadding="10" >
+		<td>
+			<img>
+			<xsl:attribute name="src">
+				<xsl:value-of select="@chemin"/>
+			</xsl:attribute>
+			</img>
+		</td>
+		</table>
+	</xsl:templace>
+	
 </xsl:stylesheet>
 
 
