@@ -2,7 +2,7 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
   <xsl:output method="html" version="1.0" indent="yes"/>
   <xsl:template match="event[contains(title,'Workaholics')]">
-    <ul class="media-list">
+    <ul class="media-list survol">
       <li  id="eventList">
     <div class="media-body" id="eventDiv">
          <h4 class="media-heading">

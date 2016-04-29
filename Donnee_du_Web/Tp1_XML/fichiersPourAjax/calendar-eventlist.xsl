@@ -2,11 +2,11 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
   <xsl:output method="html" version="1.0" indent="yes"/>
   <xsl:template match="/">
-    <ul class="media-list">
+    <ul class="media-list survol">
     <xsl:for-each select="//event">
       <xsl:sort select="title"/>
-      <li  id="eventList">
-        <div class="media-body" id="eventDiv">
+      <li class="eventList">
+        <div class="media-body eventDiv">
           <h4 class="media-heading">
             <xsl:value-of select="./title"/>
           </h4>

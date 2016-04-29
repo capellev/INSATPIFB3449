@@ -20,6 +20,11 @@
         .media-list li {
             padding: 5px
         }
+    
+    .survol:hover {
+      background-color : lightgray;
+      border-radius : 10px;
+    }
     </style>
     
     <script type="text/javascript">   
@@ -337,23 +342,91 @@
       document.getElementById("button5").hidden=false;
     }
     
+    function detailEvents() {
+      var elements = document.getElementsByClassName("eventList");
+      
+      Array.prototype.forEach.call(elements, function(element) {
+                                   
+                                   var title;
+                                   var eventDiv=element.firstChild;
+                                   for(var i = 0; i < eventDiv.childNodes.length; i++){
+                                   if(eventDiv.childNodes[i].className=="media-heading"){
+                                   title=eventDiv.childNodes[i].innerHTML;
+                                   }
+                                  
+                                   }
+                                   
+                                   var response = getHttpJSON("http://www.omdbapi.com/?t="+ title +"&r=json");
+                                   
+                                   var itemImage = document.createElement("img");
+                                   itemImage.setAttribute("class", "media-object img-thumbnail responsive");
+                                   itemImage.setAttribute("src", response.Poster);
+                                   
+                                   var divImage = document.createElement("div");
+                                   divImage.setAttribute("class", "pull-left thumbnail-size");
+                                   divImage.appendChild(itemImage);
+                                   element.insertBefore(divImage,element.firstChild);
+                                   
+                                   var moreInfos = document.createElement("div");
+                                   eventDiv.appendChild(moreInfos);
+                                   
+                                   // Création des labels
+                                   var yearLabel = document.createElement("span");
+                                   yearLabel.setAttribute("class", "label label-default");
+                                   yearLabel.innerHTML = response.Year;
+                                   var ratedLabel = document.createElement("span");
+                                   ratedLabel.setAttribute("class", "label label-default");
+                                   ratedLabel.innerHTML = response.Rated;
+                                   var releasedLabel = document.createElement("span");
+                                   releasedLabel.setAttribute("class", "label label-default");
+                                   releasedLabel.innerHTML = response.Released;
+                                   var runtimeLabel = document.createElement("span");
+                                   runtimeLabel.setAttribute("class", "label label-default");
+                                   runtimeLabel.innerHTML = response.Runtime;
+                                   var genreLabel = document.createElement("span");
+                                   genreLabel.setAttribute("class", "label label-default");
+                                   genreLabel.innerHTML = response.Genre;
+                                   var languageLabel = document.createElement("span");
+                                   languageLabel.setAttribute("class", "label label-default");
+                                   languageLabel.innerHTML = response.Language;
+                                   var countryLabel = document.createElement("span");
+                                   countryLabel.setAttribute("class", "label label-default");
+                                   countryLabel.innerHTML = response.Country;
+                                   var imdbRatingLabel = document.createElement("span");
+                                   imdbRatingLabel.setAttribute("class", "label label-default");
+                                   imdbRatingLabel.innerHTML = response.imdbRating;
+                                   var imdbVotesLabel = document.createElement("span");
+                                   imdbVotesLabel.setAttribute("class", "label label-default");
+                                   imdbVotesLabel.innerHTML = response.imdbVotes;
+                                   
+                                   moreInfos.appendChild(yearLabel);
+                                   moreInfos.appendChild(document.createTextNode (" "));
+                                   moreInfos.appendChild(ratedLabel);
+                                   moreInfos.appendChild(document.createTextNode (" "));
+                                   moreInfos.appendChild(releasedLabel);
+                                   moreInfos.appendChild(document.createTextNode (" "));
+                                   moreInfos.appendChild(runtimeLabel);
+                                   moreInfos.appendChild(document.createTextNode (" "));
+                                   moreInfos.appendChild(genreLabel);
+                                   moreInfos.appendChild(document.createTextNode (" "));
+                                   moreInfos.appendChild(languageLabel);
+                                   moreInfos.appendChild(document.createTextNode (" "));
+                                   moreInfos.appendChild(countryLabel);
+                                   moreInfos.appendChild(document.createTextNode (" "));
+                                   moreInfos.appendChild(imdbRatingLabel);
+                                   moreInfos.appendChild(document.createTextNode (" "));
+                                   moreInfos.appendChild(imdbVotesLabel);
+
+                                   
+                                   });
+    }
+    
       </script>
 </head>
 
 <body id="body">
 
 <div class="container">
-	
-<p>
-    <input id="myButton1" type="button" value="1. AJAX simple (fn : setNom)" onClick="setNom(document.getElementById('leNoBinomeAInserer').value);" /> <input id="leNoBinomeAInserer" type="text" value="B3000" /><br />
-    <input id="myButton2" type="button" value="2. AJAX avec DOM sur calendar-short.xml (fn : ajaxCreateurs)" onClick="ajaxCreateurs('fichiersPourAjax/calendar-short.xml');" /><br />
-    <input id="myButton3" type="button" value="3. Feuille de style xsl (calendar-binome-date.xsl) sur xml (calendar-short.xml) (fn : ajaxBinomeDate) " onClick="ajaxBinomeDate('fichiersPourAjax/calendar-short.xml','fichiersPourAjax/calendar-binome-date.xsl','ul');" /><br />
-    <input id="myButton4" type="button" value="4. Affichage des détails d'un évenement (fn : ajaxDetailsEpisode12Workaholics)" onClick="ajaxDetailsEpisode12Workaholics('fichiersPourAjax/exemple-event-workaholics.json','remplacerCeci');" /><br />
-</p>
-
-<div>
-  <p>Bin&ocirc;me : <span id="leNomAModifier" style="color: red; font-weight: bold;">No Bin&ocirc;me</span>.</p>
-</div>
 
 <p>
 <input id="button1" type ="button" value="1. Changement couleur" onClick="changeColor()" />
