@@ -8,3 +8,78 @@ Xpath:
 5 - //descendant-or-self::phrase[9]
 6 - //phrase[starts-with(text(),"Je")]
 7 - //paragr[not(@type=preceding::paragr/@type)]/@type
+
+
+
+
+Partie XQuery :
+
+1. 
+<phrases>
+{
+  for $i in //phrase[@langue="fr"] order by $i
+  return $i
+}
+</phrases>
+
+2. 
+<phrases> 
+{
+	for $i in //phrase[@langue="fr"] where contains($i,"mouton")
+	return $i
+}
+</phrases>
+
+3.
+<paragraphes>
+{
+
+	for $i in //paragr
+	return <paragraphe type="{$i/@type}" nbphrase="{count($i/phrase)}">
+  	{  
+  		for $j in distinct-values($i/phrase/@modalite)
+  		return <modalite> {$j} </modalite> 
+  	}
+  	{
+  		for $k in $i/phrase/@locuteur
+  		return <locuteur> {$k} </locuteur> 
+  	}  
+	</paragraphe>
+}
+</paragraphe>
+
+4.
+<texteFr>
+{
+	for $i in //paragr/phrase[@langue="fr"]
+	return data($i)
+}
+</texteFr>
+
+5.
+<phrasesDeuxFr>
+{
+	for $i in //paragr/phrase[2][@langue="fr"]
+	return data($i)
+}
+</phrasesDeuxFr>
+
+6.
+<dialogueFr>
+{
+
+	for $i in //paragr[@type="dialogue"]/phrase[@langue="fr"][@locuteur="Narrateur"]
+	return data($i)
+}
+</dialogueFr>
+
+7.
+<phrasesPP>
+{
+	for $i in //paragr/phrase[@langue="fr"][@locuteur="LePetitPrince"]
+	where contains($i, "mouton")
+	return data($i)
+}
+</phrasesPP>
+
+
