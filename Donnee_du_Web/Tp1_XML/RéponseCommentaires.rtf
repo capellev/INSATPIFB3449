@@ -1,0 +1,363 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf160
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fswiss\fcharset0 ArialMT;}
+{\colortbl;\red255\green255\blue255;\red0\green20\blue69;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww23940\viewh11400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\f0\b\fs28 \cf0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\qc
+
+\fs32 \cf0 COMPTE-RENDU : 
+\f1 \expnd0\expndtw0\kerning0
+TP 3IF XML, XSL, XQuery, Javascript, DOM 2015-2016\
+
+\b0\fs24 Quentin Toulou & Victor Capelle\
+B3449\
+
+\f0\b\fs28 \kerning1\expnd0\expndtw0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\cf0 \
+Premi\'e8re partie :  XML, DTD, XPath, XSLT
+\b0\fs24 \
+\
+
+\fs28 \ul Etape 1 : Mise \'e0 jour de l'instance [XML, DTD]\ulnone \
+
+\fs24 \
+1-1 Ajout balise <email>\
+\
+\
+
+\fs28 \ul Etape 2 : Exploration de l'instance [XPath]\ulnone \
+
+\fs24 \
+
+\i\fs26 \cf2 1 - Les auteurs de la mise en forme :
+\i0 \cf0 \
+
+\fs24 /texte/entete/infos/mise_en_forme_par/auteur\
+\
+
+\i\fs26 \cf2 2 - Les paragraphes de narration :
+\i0 \cf0 \
+
+\fs24 //paragr[@type="narration"]\
+\
+
+\i\fs26 \cf2 3 - Les phrases en fran\'e7ais :
+\i0 \cf0 \
+
+\fs24  //phrase[@langue="fr"]\
+\
+
+\fs26 \cf2 4 - La troisi\'e8me phrase de chaque paragraphe :\cf0 \
+
+\fs24 //paragr/phrase[3]\
+\
+
+\fs26 \cf2 5 - La neuvi\'e8me phrase du texte :\cf0 \
+
+\fs24 //descendant-or-self::phrase[9]\
+\
+
+\fs26 \cf2 6 - Les phrases commen\'e7ant par "Je" :\cf0 \
+
+\fs24 //phrase[starts-with(text(),"Je")]\
+\
+
+\fs26 \cf2 7 - Listez les types des paragraphes du texte :\cf0 \
+
+\fs24 //paragr[not(@type=preceding::paragr/@type)]/@type\
+\
+\
+\
+\
+
+\b\fs28 Deuxi\'e8me partie XQuery :
+\b0\fs24 \
+\
+
+\fs28 \cf2 1. Retournez les phrases en fran\'e7ais tri\'e9s en ordre alphab\'e9tique :\cf0 \
+
+\fs24 <phrases>\
+\{\
+  for $i in //phrase[@langue="fr"] order by $i\
+  return $i\
+\}\
+</phrases>\
+\
+\
+
+\i\b R\'e9sultat :\
+\
+
+\i0\b0 <phrases>\
+  <phrase locuteur="Narrateur" modalite="declarative" langue="fr">Alors j'ai dessin\'e9.</phrase>\
+  <phrase locuteur="Narrateur" modalite="declarative" langue="fr">Alors vous imaginez ma surprise, au lev\'e9 du jour, quand une dr\'f4le de petite voix m'a r\'e9veill\'e9.</phrase>\
+  <phrase locuteur="Narrateur" modalite="declarative" langue="fr">Alors, faute de patience, comme j'avais hate de commencer le d\'e9montage de mon moteur, je griffonnai ce dessin-ci.</phrase>\
+  <phrase locuteur="Narrateur" modalite="declarative" langue="fr">Aussi absurde que cela me sembla\'eet \'e0 mille milles de tous les endroits habit\'e9s et en danger de mort, je sortis de ma poche une feuille de papier et un stylographe.</phrase>\
+  <phrase locuteur="LePetitPrince" modalite="exclamative" langue="fr">C'est tout \'e0 fait comme \'e7a que je le voulais!</phrase>\
+  <phrase locuteur="Narrateur" modalite="declarative" langue="fr">C'\'e9tait pour moi une question de vie ou de mort. J'avais \'e0 peine de l'eau \'e0 boire pour huit jours.</phrase>\
+  <phrase locuteur="Narrateur" modalite="declarative" langue="fr">Ca c'est la caisse.</phrase>\
+  <phrase locuteur="LePetitPrince" modalite="imp\'e9rative" langue="fr">Ca ne fait rien. Dessine-moi un mouton.</phrase>\
+  <phrase locuteur="Narrateur" modalite="declarative" langue="fr">Ca suffira s\'fbrement.</phrase>\
+  <phrase locuteur="Narrateur" modalite="declarative" langue="fr">Ce n'est pas de ma faute.</phrase>\
+  <phrase locuteur="Narrateur" modalite="declarative" langue="fr">Celui du boa ferm\'e9.</phrase>\
+  <phrase locuteur="LePetitPrince" modalite="declarative" langue="fr">Celui-l\'e0 est trop vieux.</phrase>\
+  <phrase locuteur="LePetitPrince" modalite="declarative" langue="fr">Chez moi c'est tout petit.</phrase>\
+  <phrase locuteur="Narrateur" modalite="declarative" langue="fr">Comme je n'avais jamais dessin\'e9 un mouton je refis, pour lui, un des deux seuls dessins dont j'\'e9tais capable.</phrase>\
+  <phrase locuteur="LePetitPrince" modalite="interrogative" langue="fr">Crois-tu qu'il faille beaucoup d'herbe \'e0 ce mouton?</phrase>\
+  <phrase locuteur="LePetitPrince" modalite="imp\'e9rative" langue="fr">Dessine-moi un mouton.</phrase>\
+  <phrase locuteur="LePetitPrince" modalite="declarative" langue="fr">Dessine-moi un mouton...</phrase>\
+.\
+.\
+.\
+</phrases>
+\i\b \
+
+\i0\b0 \
+\
+
+\fs28 \cf2 2. Retournez les phrases fran\'e7aises contenant le mot "mouton" :\cf0 \
+
+\fs24 <phrases> \
+\{\
+	for $i in //phrase[@langue="fr"] where contains($i,"mouton")\
+	return $i\
+\}\
+</phrases>\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\i\b \cf0 R\'e9sultat :\
+\
+
+\i0\b0 <phrases>\
+  <phrase locuteur="LePetitPrince" modalite="declarative" langue="fr">S'il vous pla\'eet... dessine-moi un mouton!</phrase>\
+  <phrase locuteur="LePetitPrince" modalite="declarative" langue="fr">Dessine-moi un mouton...</phrase>\
+  <phrase locuteur="LePetitPrince" modalite="declarative" langue="fr">S'il vous pla\'eet... dessine-moi un mouton...</phrase>\
+  <phrase locuteur="LePetitPrince" modalite="imp\'e9rative" langue="fr">Ca ne fait rien. Dessine-moi un mouton.</phrase>\
+  <phrase locuteur="Narrateur" modalite="declarative" langue="fr">Comme je n'avais jamais dessin\'e9 un mouton je refis, pour lui, un des deux seuls dessins dont j'\'e9tais capable.</phrase>\
+  <phrase locuteur="LePetitPrince" modalite="declarative" langue="fr">J'ai besoin d'un mouton.</phrase>\
+  <phrase locuteur="LePetitPrince" modalite="imp\'e9rative" langue="fr">Dessine-moi un mouton.</phrase>\
+  <phrase locuteur="LePetitPrince" modalite="declarative" langue="fr">Tu vois bien... ce n'est pas un mouton, c'est un b\'e9lier.</phrase>\
+  <phrase locuteur="LePetitPrince" modalite="declarative" langue="fr">Je veux un mouton qui vive longtemps.</phrase>\
+  <phrase locuteur="Narrateur" modalite="declarative" langue="fr">Le mouton que tu veux est dedans.</phrase>\
+  <phrase locuteur="LePetitPrince" modalite="interrogative" langue="fr">Crois-tu qu'il faille beaucoup d'herbe \'e0 ce mouton?</phrase>\
+  <phrase locuteur="Narrateur" modalite="declarative" langue="fr">Je t'ai donn\'e9 un tout petit mouton.</phrase>\
+</phrases>
+\i\b \
+
+\i0\b0 \
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\fs28 \cf2 3. Pour chaque paragraphe: donnez son type, le nombre de phrases qui la compose, les modalit\'e9s de ces phrases (sans r\'e9p\'e9tition) ainsi que les locuteurs :\
+
+\fs24 \cf0 <paragraphes>\
+\{\
+\
+	for $i in //paragr\
+	return <paragraphe type="\{$i/@type\}" nbphrase="\{count($i/phrase)\}">\
+  	\{  \
+  		for $j in distinct-values($i/phrase/@modalite)\
+  		return <modalite> \{$j\} </modalite> \
+  	\}\
+  	\{\
+  		for $k in $i/phrase/@locuteur\
+  		return <locuteur> \{$k\} </locuteur> \
+  	\}  \
+	</paragraphe>\
+\}\
+</paragraphes>\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\i\b \cf0 R\'e9sultat :\
+\
+
+\i0\b0 <paragraphes>\
+  <paragraphe type="narration" nbphrase="7">\
+    <modalite>declarative</modalite>\
+    <locuteur locuteur="Narrateur"/>\
+    <locuteur locuteur="Narrateur"/>\
+    <locuteur locuteur="Narrateur"/>\
+    <locuteur locuteur="Narrateur"/>\
+    <locuteur locuteur="Narrateur"/>\
+    <locuteur locuteur="Narrateur"/>\
+    <locuteur locuteur="Narrateur"/>\
+  </paragraphe>\
+  <paragraphe type="narration" nbphrase="7">\
+    <modalite>declarative</modalite>\
+    <locuteur locuteur="Narrateur"/>\
+    <locuteur locuteur="Narrateur"/>\
+    <locuteur locuteur="Narrateur"/>\
+    <locuteur locuteur="Narrateur"/>\
+    <locuteur locuteur="Narrateur"/>\
+    <locuteur locuteur="Narrateur"/>\
+    <locuteur locuteur="Narrateur"/>\
+  </paragraphe>\
+  <paragraphe type="dialogue" nbphrase="6">\
+.\
+.\
+.\
+</paragraphes>
+\i\b \
+
+\i0\b0 \
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\fs28 \cf2 4. Afficher la version fran\'e7aise seulement (respectez la structure en paragraphes):\
+
+\fs24 \cf0 <texteFr>\
+\{\
+  for $i in //paragr\
+  return <paragraphe>\
+  \{\
+  for $j in $i/phrase[@langue="fr"]\
+    return $j (:  ou return data($j) pour avoir que le texte entre balises paragraphe :)\
+\
+  \}  \
+  </paragraphe>  \
+\}\
+</texteFr>\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\i\b \cf0 R\'e9sultat :\
+\
+
+\i0\b0 <texteFr>\
+  <paragraphe>\
+    <phrase locuteur="Narrateur" modalite="declarative" langue="fr">J'ai ainsi v\'e9cu seul, sans personne avec qui parler v\'e9ritablement, jusqu'\'e0 une panne dans le d\'e9sert du Sahara, il y a six ans.</phrase>\
+    <phrase locuteur="Narrateur" modalite="declarative" langue="fr">Quelque chose s'\'e9tait cass\'e9 dans mon moteur, et comme je n'avais avec moi ni m\'e9canicien, ni passagers, je me pr\'e9parai \'e0 essayer de r\'e9ussir, tout seul, une r\'e9paration difficile.</phrase>\
+    <phrase locuteur="Narrateur" modalite="declarative" langue="fr">C'\'e9tait pour moi une question de vie ou de mort. J'avais \'e0 peine de l'eau \'e0 boire pour huit jours.</phrase>\
+  </paragraphe>\
+  <paragraphe>\
+    <phrase locuteur="Narrateur" modalite="declarative" langue="fr">Le premier soir je me suis donc endormi sur le sable \'e0 mille milles de toute terre habit\'e9e.</phrase>\
+    <phrase locuteur="Narrateur" modalite="declarative" langue="fr">J'\'e9tais bien plus isol\'e9 qu'un naufrag\'e9 sur un rideau au milieu de l'oc\'e9an.</phrase>\
+    <phrase locuteur="Narrateur" modalite="declarative" langue="fr">Alors vous imaginez ma surprise, au lev\'e9 du jour, quand une dr\'f4le de petite voix m'a r\'e9veill\'e9.</phrase>\
+    <phrase locuteur="Narrateur" modalite="declarative" langue="fr">Elle disait:</phrase>\
+  </paragraphe>\
+  <paragraphe>\
+    <phrase locuteur="LePetitPrince" modalite="declarative" langue="fr">S'il vous pla\'eet... dessine-moi un mouton!</phrase>\
+    <phrase locuteur="Narrateur" modalite="exclamative" langue="fr">Hein!</phrase>\
+    <phrase locuteur="LePetitPrince" modalite="declarative" langue="fr">Dessine-moi un mouton...</phrase>\
+  </paragraphe>\
+  <paragraphe>\
+    <phrase locuteur="Narrateur" modalite="declarative" langue="fr">J'ai saut\'e9 sur mes pieds comme si j'avais \'e9t\'e9 frapp\'e9 par la foudre.</phrase>\
+    <phrase locuteur="Narrateur" modalite="declarative" langue="fr">J'ai bien frott\'e9 mes yeux.</phrase>\
+    <phrase locuteur="Narrateur" modalite="declarative" langue="fr">J'ai bien regard\'e9.</phrase>\
+    <phrase locuteur="Narrateur" modalite="declarative" langue="fr">Et j'ai vu un petit bonhomme tout \'e0 fait extraordinaire qui me consid\'e9rait gravement.</phrase>\
+    <phrase locuteur="Narrateur" modalite="declarative" langue="fr">Voil\'e0 le meilleur portrait que, plus tard, j'ai r\'e9ussi \'e0 faire de lui.</phrase>\
+.\
+.\
+.\
+</texteFr>
+\i\b \
+
+\i0\b0 \
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\fs28 \cf2 5. Afficher uniquement les deuxi\'e8mes phrases des paragraphes de la version fran\'e7aise :\
+
+\fs24 \cf0 <phrasesDeuxFr>\
+\{\
+	for $i in //paragr/phrase[2][@langue="fr"]\
+	return $i\
+\}\
+</phrasesDeuxFr>\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\i\b \cf0 R\'e9sultat :\
+\
+
+\i0\b0 <phrasesDeuxFr>\
+  <phrase locuteur="Narrateur" modalite="declarative" langue="fr">Quelque chose s'\'e9tait cass\'e9 dans mon moteur, et comme je n'avais avec moi ni m\'e9canicien, ni passagers, je me pr\'e9parai \'e0 essayer de r\'e9ussir, tout seul, une r\'e9paration difficile.</phrase>\
+  <phrase locuteur="Narrateur" modalite="declarative" langue="fr">J'\'e9tais bien plus isol\'e9 qu'un naufrag\'e9 sur un rideau au milieu de l'oc\'e9an.</phrase>\
+  <phrase locuteur="Narrateur" modalite="declarative" langue="fr">J'ai bien frott\'e9 mes yeux.</phrase>\
+  <phrase locuteur="Narrateur" modalite="declarative" langue="fr">N'oubliez pas que je me trouvais \'e0 mille milles de toute r\'e9gion habit\'e9e.</phrase>\
+  <phrase locuteur="Narrateur" modalite="declarative" langue="fr">Aussi absurde que cela me sembla\'eet \'e0 mille milles de tous les endroits habit\'e9s et en danger de mort, je sortis de ma poche une feuille de papier et un stylographe.</phrase>\
+  <phrase locuteur="Narrateur" modalite="declarative" langue="fr">Celui du boa ferm\'e9.</phrase>\
+  <phrase locuteur="Narrateur" modalite="declarative" langue="fr">Il regarda attentivement, puis:</phrase>\
+  <phrase locuteur="Narrateur" modalite="declarative" langue="fr">Mon ami sourit gentiment, avec indulgence:</phrase>\
+  <phrase locuteur="Narrateur" modalite="declarative" langue="fr">Mais il fut refus\'e9, comme les pr\'e9c\'e9dents:</phrase>\
+  <phrase locuteur="Narrateur" modalite="declarative" langue="fr">Et je lan\'e7ai:</phrase>\
+</phrasesDeuxFr>
+\i\b \
+
+\i0\b0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\cf0 \
+
+\fs28 \cf2 6. Afficher seulement les dialogues en fran\'e7ais du narrateur :\
+
+\fs24 \cf0 <dialogueFr>\
+\{\
+\
+	for $i in //paragr[@type="dialogue"]/phrase[@langue="fr"][@locuteur="Narrateur"]\
+	return $i\
+\}\
+</dialogueFr>\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\i\b \cf0 R\'e9sultat :\
+\
+
+\i0\b0 <dialogueFr>\
+  <phrase locuteur="Narrateur" modalite="exclamative" langue="fr">Hein!</phrase>\
+  <phrase locuteur="Narrateur" modalite="interrogative" langue="fr">Mais qu'est-ce que tu fais l\'e0?</phrase>\
+  <phrase locuteur="Narrateur" modalite="declarative" langue="fr">Ca c'est la caisse.</phrase>\
+  <phrase locuteur="Narrateur" modalite="declarative" langue="fr">Le mouton que tu veux est dedans.</phrase>\
+  <phrase locuteur="Narrateur" modalite="interrogative" langue="fr">Pourquoi?</phrase>\
+  <phrase locuteur="Narrateur" modalite="declarative" langue="fr">Ca suffira s\'fbrement.</phrase>\
+  <phrase locuteur="Narrateur" modalite="declarative" langue="fr">Je t'ai donn\'e9 un tout petit mouton.</phrase>\
+</dialogueFr>
+\i\b \
+
+\i0\b0 \
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\fs28 \cf2 7. Afficher toutes les phrases du Petit Prince en fran\'e7ais qui comporte le mot "mouton" ainsi que le nombre de ces phrases :\
+
+\fs24 \cf0 <phrasesPP>\
+\{\
+\
+	for $c in //corps\
+	let $phrases := $c/paragr/phrase[@locuteur="LePetitPrince" and @langue="fr" and contains(.,"mouton")]\
+\
+	return (\
+		<phrases> \{$phrases\} </phrases>,\
+		<nbPhrases>Le nombre de phrase est : \{count($phrases)\}</nbPhrases>\
+	)\
+\
+\}\
+</phrasesPP>\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\i\b \cf0 R\'e9sultat :\
+\
+
+\i0\b0 <phrasesPP>\
+  <phrases>\
+    <phrase locuteur="LePetitPrince" modalite="declarative" langue="fr">S'il vous pla\'eet... dessine-moi un mouton!</phrase>\
+    <phrase locuteur="LePetitPrince" modalite="declarative" langue="fr">Dessine-moi un mouton...</phrase>\
+    <phrase locuteur="LePetitPrince" modalite="declarative" langue="fr">S'il vous pla\'eet... dessine-moi un mouton...</phrase>\
+    <phrase locuteur="LePetitPrince" modalite="imp\'e9rative" langue="fr">Ca ne fait rien. Dessine-moi un mouton.</phrase>\
+    <phrase locuteur="LePetitPrince" modalite="declarative" langue="fr">J'ai besoin d'un mouton.</phrase>\
+    <phrase locuteur="LePetitPrince" modalite="imp\'e9rative" langue="fr">Dessine-moi un mouton.</phrase>\
+    <phrase locuteur="LePetitPrince" modalite="declarative" langue="fr">Tu vois bien... ce n'est pas un mouton, c'est un b\'e9lier.</phrase>\
+    <phrase locuteur="LePetitPrince" modalite="declarative" langue="fr">Je veux un mouton qui vive longtemps.</phrase>\
+    <phrase locuteur="LePetitPrince" modalite="interrogative" langue="fr">Crois-tu qu'il faille beaucoup d'herbe \'e0 ce mouton?</phrase>\
+  </phrases>\
+  <nbPhrases>Le nombre de phrase est : 9</nbPhrases>\
+</phrasesPP>\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\cf0 \
+}
