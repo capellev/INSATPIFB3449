@@ -1,20 +1,39 @@
+Première partie :  XML, DTD, XPath, XSLT
+
+Etape 1 : Mise à jour de l'instance [XML, DTD]
+
 1-1 Ajout balise <email>
 
-Xpath:
-1 - /texte/entete/infos/mise_en_forme_par/auteur
-2 - //paragr[@type="narration"]
-3 - //phrase[@langue="fr"]
-4 - //paragr/phrase[3]
-5 - //descendant-or-self::phrase[9]
-6 - //phrase[starts-with(text(),"Je")]
-7 - //paragr[not(@type=preceding::paragr/@type)]/@type
+
+Etape 2 : Exploration de l'instance [XPath]
+
+1 - Les auteurs de la mise en forme :
+/texte/entete/infos/mise_en_forme_par/auteur
+
+2 - Les paragraphes de narration :
+//paragr[@type="narration"]
+
+3 - Les phrases en français :
+ //phrase[@langue="fr"]
+
+4 - La troisième phrase de chaque paragraphe :
+//paragr/phrase[3]
+
+5 - La neuvième phrase du texte :
+//descendant-or-self::phrase[9]
+
+6 - Les phrases commençant par "Je" :
+//phrase[starts-with(text(),"Je")]
+
+7 - Listez les types des paragraphes du texte :
+//paragr[not(@type=preceding::paragr/@type)]/@type
 
 
 
 
-Partie XQuery :
+Deuxième partie XQuery :
 
-1. 
+1. Retournez les phrases en français triés en ordre alphabétique :
 <phrases>
 {
   for $i in //phrase[@langue="fr"] order by $i
@@ -22,7 +41,7 @@ Partie XQuery :
 }
 </phrases>
 
-2. 
+2. Retournez les phrases françaises contenant le mot "mouton" :
 <phrases> 
 {
 	for $i in //phrase[@langue="fr"] where contains($i,"mouton")
@@ -30,7 +49,7 @@ Partie XQuery :
 }
 </phrases>
 
-3.
+3. Pour chaque paragraphe: donnez son type, le nombre de phrases qui la compose, les modalités de ces phrases (sans répétition) ainsi que les locuteurs :
 <paragraphes>
 {
 
@@ -48,38 +67,51 @@ Partie XQuery :
 }
 </paragraphe>
 
-4.
+4. Afficher la version française seulement (respectez la structure en paragraphes):
 <texteFr>
 {
-	for $i in //paragr/phrase[@langue="fr"]
-	return data($i)
+  for $i in //paragr
+  return <paragraphe>
+  {
+  for $j in $i/phrase[@langue="fr"]
+    return $j (:  ou return data($j) pour avoir que le texte entre balises paragraphe :)
+
+  }  
+  </paragraphe>  
 }
 </texteFr>
 
-5.
+5. Afficher uniquement les deuxièmes phrases des paragraphes de la version française :
 <phrasesDeuxFr>
 {
 	for $i in //paragr/phrase[2][@langue="fr"]
-	return data($i)
+	return $i
 }
 </phrasesDeuxFr>
 
-6.
+6. Afficher seulement les dialogues en français du narrateur :
 <dialogueFr>
 {
 
 	for $i in //paragr[@type="dialogue"]/phrase[@langue="fr"][@locuteur="Narrateur"]
-	return data($i)
+	return $i
 }
 </dialogueFr>
 
-7.
+7. Afficher toutes les phrases du Petit Prince en français qui comporte le mot "mouton" ainsi que le nombre de ces phrases :
 <phrasesPP>
 {
-	for $i in //paragr/phrase[@langue="fr"][@locuteur="LePetitPrince"]
-	where contains($i, "mouton")
-	return data($i)
+
+	for $c in //corps
+	let $phrases := $c/paragr/phrase[@locuteur="LePetitPrince" and @langue="fr" and contains(.,"mouton")]
+
+	return (
+		<phrases> {$phrases} </phrases>,
+		<nbPhrases>Le nombre de phrase est : {count($phrases)}</nbPhrases>
+	)
+
 }
 </phrasesPP>
+
 
 
